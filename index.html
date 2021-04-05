@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://kit.fontawesome.com/0986a6fc69.js" crossorigin="anonymous"></script>
+    <title>T.RUN Statistik</title>
+</head>
+
+<body>
+
+    <div id="app">
+        
+        <button  v-bind:class="{'selected-button': showWhat=='run/hitlist', 'selection-button': showWhat!='run/hitlist'}" v-on:click="showRuns"><i class="fas fa-running"></i> Laufen</button>
+        <button  v-bind:class="{'selected-button': showWhat=='biking/hitlist', 'selection-button': showWhat!='biking/hitlist'}" v-on:click="showBikings"><i class="fas fa-biking"></i> Rad</button>
+        <button  v-bind:class="{'selected-button': timeSpan==4, 'selection-button': timeSpan!=4}" v-on:click="setApril">April</button>
+        <button  v-bind:class="{'selected-button': timeSpan==5, 'selection-button': timeSpan!=5}" v-on:click="setMai">Mai</button>
+        <button  v-bind:class="{'selected-button': timeSpan==6, 'selection-button': timeSpan!=6}" v-on:click="setJuni">Juni</button>
+
+        <p></p>
+
+        <table>
+            <tr>
+                <th>Platz</th>
+                <th>Name</th>
+                <th>Strecke</th>
+                <th v-if="showWhat=='biking/hitlist'">Höhenmeter</th>
+            </tr>
+            <tr v-for="todo in todos">
+                <td>{{ todo.rank }}</td>
+                <td>{{ todo._id.name }}</td>
+                <td>{{ Math.round((todo.totalAmount + Number.EPSILON) * 100) / 100 }} km</td>
+                <td v-if="showWhat=='biking/hitlist'">{{ Math.round((todo.totalAmount + Number.EPSILON) * 1) / 1 }} m</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
