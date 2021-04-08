@@ -1,6 +1,8 @@
 <html>
 
 <head>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
     <link rel="stylesheet" href="index.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://kit.fontawesome.com/0986a6fc69.js" crossorigin="anonymous"></script>
@@ -24,13 +26,13 @@
                 <th>Platz</th>
                 <th>Name</th>
                 <th>Strecke</th>
-                <th v-if="showWhat=='biking/hitlist'">Höhenmeter</th>
+                <th v-if="showWhat=='biking/hitlist'">H&ouml;henmeter</th>
             </tr>
             <tr v-for="todo in todos">
                 <td>{{ todo.rank }}</td>
                 <td>{{ todo._id.name }}</td>
                 <td>{{ Math.round((todo.totalAmount + Number.EPSILON) * 100) / 100 }} km</td>
-                <td v-if="showWhat=='biking/hitlist'">{{ Math.round((todo.totalAmount + Number.EPSILON) * 1) / 1 }} m</td>
+                <td v-if="showWhat=='biking/hitlist'">{{ Math.round((todo.elevgain + Number.EPSILON) * 1) / 1 }} m</td>
             </tr>
         </table>
 

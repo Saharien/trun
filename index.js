@@ -5,12 +5,18 @@ var app = new Vue({
         timeSpan: '4',
         message: 'Hello Vue!',
         todos: [],
-        apiUrl: 'http://localhost:8080/api', // http://localhost:8080/api/run/hitlist/4  / biking
+        // apiUrl: 'http://localhost:80/api', // http://localhost:80/api/run/hitlist/4  / biking
+        apiUrl: 'http://159.69.26.234:80/api',
         pass: 'gi9k3C4F4FER',
         urlToLoad: ''
     },
-
+    mounted: function () {
+        this.$nextTick(function () {
+          this.loadData();
+        })
+    },
     methods: {
+        
         loadData: function () {
 
             this.urlToLoad = this.apiUrl + '/' + this.showWhat + '/' + this.timeSpan;
