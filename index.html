@@ -12,31 +12,42 @@
 <body>
 
     <div id="app">
-        
-        <button  v-bind:class="{'selected-button': showWhat=='run/hitlist', 'selection-button': showWhat!='run/hitlist'}" v-on:click="showRuns"><i class="fas fa-running"></i> Laufen</button>
-        <button  v-bind:class="{'selected-button': showWhat=='biking/hitlist', 'selection-button': showWhat!='biking/hitlist'}" v-on:click="showBikings"><i class="fas fa-biking"></i> Rad</button>
-        <button  v-bind:class="{'selected-button': timeSpan==4, 'selection-button': timeSpan!=4}" v-on:click="setApril">April</button>
-        <button  v-bind:class="{'selected-button': timeSpan==5, 'selection-button': timeSpan!=5}" v-on:click="setMai">Mai</button>
-        <button  v-bind:class="{'selected-button': timeSpan==6, 'selection-button': timeSpan!=6}" v-on:click="setJuni">Juni</button>
 
-        <p></p>
+        <div>
+            <img id="trunImage" src="./assets/LOGO_WEISS.png">
+        </div>
 
-        <table>
-            <tr>
-                <th @click="sort('rank')">Platz</th>
-                <th>Name</th>
-                <th @click="sort('distance')">Strecke</th>
-                <th @click="sort('heightMeter')" v-if="showWhat=='biking/hitlist'">H&ouml;henmeter</th>
-            </tr>
-            <tr v-for="activity in sortedActivities">
-                <td>{{ activity.rank }}</td>
-                <td>{{ activity._id.name }}</td>
-                <td>{{ activity.distance }} km</td>
-                <td v-if="showWhat=='biking/hitlist'">{{ activity.heightMeter }} m</td>
-            </tr>
-        </table>
-       
+        <div class="buttonRow">
+            <button
+                v-bind:class="{'selected-button': showWhat=='run/hitlist', 'selection-button': showWhat!='run/hitlist'}"
+                v-on:click="showRuns"><i class="fas fa-running"></i> Laufen</button>
+            <button
+                v-bind:class="{'selected-button': showWhat=='biking/hitlist', 'selection-button': showWhat!='biking/hitlist'}"
+                v-on:click="showBikings"><i class="fas fa-biking"></i> Rad</button>
+            <button v-bind:class="{'selected-button': timeSpan==4, 'selection-button': timeSpan!=4}"
+                v-on:click="setApril">April</button>
+            <button v-bind:class="{'selected-button': timeSpan==5, 'selection-button': timeSpan!=5}"
+                v-on:click="setMai">Mai</button>
+            <button v-bind:class="{'selected-button': timeSpan==6, 'selection-button': timeSpan!=6}"
+                v-on:click="setJuni">Juni</button>
+        </div>
 
+        <div class="tablecontent">
+            <table>
+                <tr>
+                    <th @click="sort('rank')">Platz</th>
+                    <th>Name</th>
+                    <th @click="sort('distance')">Strecke</th>
+                    <th @click="sort('heightMeter')" v-if="showWhat=='biking/hitlist'">H&ouml;henmeter</th>
+                </tr>
+                <tr v-for="activity in sortedActivities">
+                    <td>{{ activity.rank }}</td>
+                    <td>{{ activity._id.name }}</td>
+                    <td>{{ activity.distance }} km</td>
+                    <td v-if="showWhat=='biking/hitlist'">{{ activity.heightMeter }} m</td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <script src="index.js"></script>
