@@ -23,18 +23,19 @@
 
         <table>
             <tr>
-                <th>Platz</th>
+                <th @click="sort('rank')">Platz</th>
                 <th>Name</th>
-                <th>Strecke</th>
-                <th v-if="showWhat=='biking/hitlist'">H&ouml;henmeter</th>
+                <th @click="sort('distance')">Strecke</th>
+                <th @click="sort('heightMeter')" v-if="showWhat=='biking/hitlist'">H&ouml;henmeter</th>
             </tr>
-            <tr v-for="todo in todos">
-                <td>{{ todo.rank }}</td>
-                <td>{{ todo._id.name }}</td>
-                <td>{{ Math.round((todo.totalAmount + Number.EPSILON) * 100) / 100 }} km</td>
-                <td v-if="showWhat=='biking/hitlist'">{{ Math.round((todo.elevgain + Number.EPSILON) * 1) / 1 }} m</td>
+            <tr v-for="activity in sortedActivities">
+                <td>{{ activity.rank }}</td>
+                <td>{{ activity._id.name }}</td>
+                <td>{{ activity.distance }} km</td>
+                <td v-if="showWhat=='biking/hitlist'">{{ activity.heightMeter }} m</td>
             </tr>
         </table>
+       
 
     </div>
 
