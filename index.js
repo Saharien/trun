@@ -4,11 +4,13 @@ var app = new Vue({
         showWhat: 'run/hitlist', // Alternative 'biking/hitlist'
         timeSpan: '4',
         message: 'Hello Vue!',
-        todos: [],
+        activities: [],
         // apiUrl: 'http://localhost:80/api', // http://localhost:80/api/run/hitlist/4  / biking
         apiUrl: 'http://159.69.26.234:80/api',
         pass: 'gi9k3C4F4FER',
-        urlToLoad: ''
+        urlToLoad: '',
+        currentSort:'rank',
+        currentSortDir:'asc'
     },
     mounted: function () {
         this.$nextTick(function () {
@@ -29,17 +31,21 @@ var app = new Vue({
                 return myJson;
             }
 
-            getFetchData(this.urlToLoad, this.pass).then(activities => {
+            getFetchData(this.urlToLoad, this.pass).then(a => {
 
                 rank = 0;
                 lastTotalAmount = 0;
 
-                this.todos = activities.data;
-
-
+                this.activities = a.data;
 
                 // Platzierung setzen
-                this.todos.forEach(function (element, index) {
+                this.activities.forEach(function (element, index) {
+
+                    // calculate distance
+                    element.distance = Math.round((element.totalAmount + Number.EPSILON) * 100) / 100;
+                    
+                    // calculate height meter
+                    element.heightMeter = Math.round((element.elevgain + Number.EPSILON) * 1) / 1;
 
                     if (element.totalAmount != lastTotalAmount) {
                         rank++;
@@ -69,6 +75,24 @@ var app = new Vue({
         setJuni: function () {
             this.timeSpan = 6;
             this.loadData();
+        },
+        sort:function(s) {
+            //if s == current sort, reverse
+            if(s === this.currentSort) {
+              this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+            }
+            this.currentSort = s;
+          }    
+    },
+    computed:{
+        sortedActivities:function() {
+          return this.activities.sort((a,b) => {
+            let modifier = 1;
+            if(this.currentSortDir === 'desc') modifier = -1;
+            if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+            if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+            return 0;
+          });
         }
-    }
+      }
 });
