@@ -3,7 +3,6 @@ var app = new Vue({
     data: {
         showWhat: 'run/hitlist', // Alternative 'biking/hitlist'
         timeSpan: '4',
-        message: 'Hello Vue!',
         activities: [],
         // apiUrl: 'http://localhost:80/api', // http://localhost:80/api/run/hitlist/4  / biking
         apiUrl: 'http://159.69.26.234:80/api',

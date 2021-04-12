@@ -51,11 +51,15 @@ html, body {
     top:1px;
   }
 
+  .button-row {
+    height:100px;
+  }
+  
   #trunImage {
-    height: 200px;
-    display: block;
+    height: 100px;
     margin-left: auto;
-    margin-right: auto;     
+    margin-right: auto;   
+    margin-bottom: .5em;  
   }
 
   #app {
