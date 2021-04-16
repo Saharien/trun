@@ -7,6 +7,10 @@ html, body {
     font-size: 22px;
 }
 
+a {
+  color: rgb(0, 0, 0);
+}
+
   th, td {
     padding-right: 18px;
     padding-top: 6px;

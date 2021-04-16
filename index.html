@@ -15,7 +15,7 @@
     <div>
        <img id="trunImage" src="./assets/LOGO_WEISS.png">
     </div>
-    
+  
     <div id="app">
         <div class="buttonRow">
             <button
@@ -42,7 +42,7 @@
                 </tr>
                 <tr v-for="activity in sortedActivities">
                     <td>{{ activity.rank }}</td>
-                    <td>{{ activity._id.name }}</td>
+                    <td><a :href="activity._id.url">{{ activity._id.name }} </a></td>
                     <td>{{ activity.distance }} km</td>
                     <td v-if="showWhat=='biking/hitlist'">{{ activity.heightMeter }} m</td>
                 </tr>
