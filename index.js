@@ -4,8 +4,7 @@ var app = new Vue({
         showWhat: 'run/hitlist', // Alternative 'biking/hitlist'
         timeSpan: '4',
         activities: [],
-        // apiUrl: 'http://localhost:80/api', // http://localhost:80/api/run/hitlist/4  / biking
-        apiUrl: 'http://159.69.26.234:80/api',
+        apiUrl: 'https://atlantis:443/api',
         pass: 'gi9k3C4F4FER',
         urlToLoad: '',
         currentSort:'rank',
